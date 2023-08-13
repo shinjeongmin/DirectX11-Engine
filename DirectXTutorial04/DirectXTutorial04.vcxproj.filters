@@ -43,10 +43,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="..\..\..\..\Desktop\STL_GraphicsEngine2-07d353e4028d394174835ce4a21a03816e804ad0\STL_GraphicsEngine2-07d353e4028d394174835ce4a21a03816e804ad0\shaders\BasicPS.hlsl">
+    <FxCompile Include="..\..\..\..\Desktop\STL_GraphicsEngine2-07d353e4028d394174835ce4a21a03816e804ad0\STL_GraphicsEngine2-07d353e4028d394174835ce4a21a03816e804ad0\shaders\BasicVS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
-    <FxCompile Include="..\..\..\..\Desktop\STL_GraphicsEngine2-07d353e4028d394174835ce4a21a03816e804ad0\STL_GraphicsEngine2-07d353e4028d394174835ce4a21a03816e804ad0\shaders\BasicVS.hlsl">
+    <FxCompile Include="BasicPS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
