@@ -1,8 +1,17 @@
 #pragma once
 #include "D3DApp.h"
+
 #include "VertexShader.h"
 #include "PixelShader.h"
+
 #include "Mesh.h"
+#include "ModelUV.h"
+
+#include "Matrix4f.h"
+
+#include <wrl.h>
+
+using Microsoft::WRL::ComPtr;
 
 class Engine : public D3DApp
 {
@@ -21,8 +30,5 @@ private:
 	// 장면 초기화.
 	bool InitializeScene();
 
-	VertexShader vertexShader;
-	PixelShader pixelShader;
-	Mesh mesh;
+	ModelUV modelUV;
 };
-

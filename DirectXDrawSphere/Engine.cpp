@@ -3,6 +3,8 @@
 
 #include "Vertex.h"
 
+#include "BasicShader.h"
+
 Engine::Engine(HINSTANCE hInstance, int width, int height, std::wstring title)
     : D3DApp(hInstance, width, height, title)
 {
@@ -57,7 +59,7 @@ int Engine::Run()
 
 void Engine::Update()
 {
-    modelUV.UpdateBuffers(deviceContext.Get());
+    //modelUV.UpdateBuffers(deviceContext.Get());
 }
 
 void Engine::DrawScene()
@@ -67,13 +69,11 @@ void Engine::DrawScene()
     
     // 지우기 (Clear) - 실제로는 덮어씌워서 색칠하기.
     // Begin Draw(Render) - DX9.
-    deviceContext->ClearRenderTargetView(renderTargetView, backgroundColor);
+    deviceContext.Get()->ClearRenderTargetView(renderTargetView.Get(), backgroundColor);
 
-    // 그리기
-    vertexShader.Bind(deviceContext);
-    pixelShader.Bind(deviceContext);
+    // 그리기 준비.
+    //BasicShader::Bind(deviceContext.Get());
 
-    mesh.RenderBuffers(deviceContext);
 
     // 프레임 바꾸기. FrontBuffer <-> BackBuffer.
     swapChain->Present(1, 0);
@@ -81,33 +81,25 @@ void Engine::DrawScene()
 
 bool Engine::InitializeScene()
 {
-    vertexShader = VertexShader(L".//shader//BasicVS.hlsl", "main", "vs_5_0");
-    pixelShader = PixelShader(L".//shader//BasicPS.hlsl", "main", "ps_5_0");
-
-    // 컴파일
-    if (vertexShader.Compile(device) == false)
+    if (BasicShader::Compile(device.Get()) == false)
     {
         return false;
     }
-    if (pixelShader.Compile(device) == false)
-    {
-        return false;
-    }
-    // 생성
-    if (vertexShader.Create(device) == false)
-    {
-        return false;
-    }
-    if (pixelShader.Create(device) == false)
+    if (BasicShader::Create(device.Get()) == false)
     {
         return false;
     }
 
     // 메쉬 초기화
-    if (mesh.InitializeBuffers(device, vertexShader.ShaderBuffer()) == false)
-    {
-        return false;
-    }
+
+    //// shader parameter부분 textureshader 넣지 않고 BasicShader로 대체
+    //if (modelUV.InitializeBuffers(device.Get(), BasicShader::ShaderBuffer(), "sphere.fbx") == false)
+    //{
+    //    return false;
+    //}
+    //modelUV.SetScale(0.002f, 0.002f, 0.002f);
+    ////modelUV.SetScale(0.2f, 0.2f, 0.2f);
+    //modelUV.SetRotation(45.0f, 45.0f, 0.0f);
 
     return true;
 }

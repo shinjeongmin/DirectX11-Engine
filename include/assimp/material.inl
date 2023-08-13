@@ -46,6 +46,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #pragma once
+
+#ifdef max
+
+#undef max
+#undef min
+#endif
+
 #ifndef AI_MATERIAL_INL_INC
 #define AI_MATERIAL_INL_INC
 
