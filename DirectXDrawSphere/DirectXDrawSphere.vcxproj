@@ -157,9 +157,13 @@
     <ClCompile Include="D3DApp.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MathUtil.cpp" />
+    <ClCompile Include="Matrix4f.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="TransformBuffer.cpp" />
+    <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Vector3f.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="VertexShader.cpp" />
@@ -169,9 +173,13 @@
     <ClInclude Include="BasicShader.h" />
     <ClInclude Include="D3DApp.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="MathUtil.h" />
+    <ClInclude Include="Matrix4f.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="TransformBuffer.h" />
+    <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Vector3f.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="VertexShader.h" />
