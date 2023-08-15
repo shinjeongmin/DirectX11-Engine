@@ -65,5 +65,5 @@ bool PixelShader::Create(ID3D11Device* device)
 
 void PixelShader::Bind(ID3D11DeviceContext* deviceContext)
 {
-    deviceContext->PSSetShader(pixelShader, NULL, NULL);
+    deviceContext->PSSetShader(pixelShader.Get(), NULL, NULL);
 }

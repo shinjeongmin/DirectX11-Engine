@@ -57,5 +57,5 @@ bool VertexShader::Create(ID3D11Device* device)
 
 void VertexShader::Bind(ID3D11DeviceContext* deviceContext)
 {
-    deviceContext->VSSetShader(vertexShader, NULL, NULL);
+    deviceContext->VSSetShader(vertexShader.Get(), NULL, NULL);
 }
