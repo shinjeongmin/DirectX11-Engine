@@ -60,10 +60,10 @@ bool D3DApp::InitializeDirect3D()
         0,
         D3D11_SDK_VERSION,
         &swapChainDesc,
-        &swapChain,
-        &device,
+        swapChain.GetAddressOf(),
+        device.GetAddressOf(),
         NULL,
-        &deviceContext
+        deviceContext.GetAddressOf()
     );
 
     // 오류 검사.
@@ -95,7 +95,7 @@ bool D3DApp::InitializeDirect3D()
     result = device->CreateRenderTargetView(
         backbufferTexture, // 여기에 정보 있고,
         nullptr,
-        &renderTargetView // 거기에 맞춰서 생성해달라.
+        renderTargetView.GetAddressOf() // 거기에 맞춰서 생성해달라.
     );
 
     // 오류 검사.
@@ -111,7 +111,7 @@ bool D3DApp::InitializeDirect3D()
     // 렌더 타겟 뷰 할당.(설정)
     deviceContext->OMSetRenderTargets( // OM : Output Merger 합쳐준다는 의미. 얘는 성공 실패 반환 안 함.
         1, // 화면을 4개로 나눈다면, 4가 입력됨.
-        &renderTargetView,
+        renderTargetView.GetAddressOf(),
         nullptr
     );
 

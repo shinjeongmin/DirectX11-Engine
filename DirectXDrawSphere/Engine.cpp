@@ -102,7 +102,7 @@ void Engine::Update()
     mesh.SetScale(scale, scale, 1.0f);
 
     // 스마트포인터 수정 필요
-    //mesh.UpdateBuffers(deviceContext.Get());
+    mesh.UpdateBuffers(deviceContext.Get());
 }
 
 void Engine::DrawScene()
@@ -112,12 +112,12 @@ void Engine::DrawScene()
     
     // 지우기 (Clear) - 실제로는 덮어씌워서 색칠하기.
     // Begin Draw(Render) - DX9.
-    deviceContext->ClearRenderTargetView(renderTargetView, backgroundColor);
+    deviceContext->ClearRenderTargetView(renderTargetView.Get(), backgroundColor);
 
     // 그리기
-    BasicShader::Bind(deviceContext);
+    BasicShader::Bind(deviceContext.Get());
 
-    mesh.RenderBuffers(deviceContext);
+    mesh.RenderBuffers(deviceContext.Get());
 
     // 프레임 바꾸기. FrontBuffer <-> BackBuffer.
     swapChain->Present(1, 0);
@@ -126,16 +126,16 @@ void Engine::DrawScene()
 bool Engine::InitializeScene()
 {
     // Compile
-    if (BasicShader::Compile(device) == false) {
+    if (BasicShader::Compile(device.Get()) == false) {
         return false;
     }
     // Create
-    if (BasicShader::Create(device) == false) {
+    if (BasicShader::Create(device.Get()) == false) {
         return false;
     }
 
     // 메쉬 초기화
-    if (mesh.InitializeBuffers(device, BasicShader::ShaderBuffer()) == false)
+    if (mesh.InitializeBuffers(device.Get(), BasicShader::ShaderBuffer()) == false)
     {
         return false;
     }
