@@ -161,8 +161,10 @@
     <ClCompile Include="Matrix4f.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="PixelShader.cpp" />
+    <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="TransformBuffer.cpp" />
+    <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Vector3f.cpp" />
     <ClCompile Include="Vertex.cpp" />
@@ -177,8 +179,10 @@
     <ClInclude Include="Matrix4f.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="PixelShader.h" />
+    <ClInclude Include="Quad.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="TransformBuffer.h" />
+    <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Vector3f.h" />
     <ClInclude Include="Vertex.h" />
