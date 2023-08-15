@@ -3,6 +3,8 @@
 
 #include "Vertex.h"
 
+#include "BasicShader.h"
+
 Engine::Engine(HINSTANCE hInstance, int width, int height, std::wstring title)
     : D3DApp(hInstance, width, height, title)
 {
@@ -57,7 +59,7 @@ int Engine::Run()
 
 void Engine::Update()
 {
-    modelUV.UpdateBuffers(deviceContext.Get());
+    //modelUV.UpdateBuffers(deviceContext.Get());
 }
 
 void Engine::DrawScene()
@@ -70,8 +72,7 @@ void Engine::DrawScene()
     deviceContext->ClearRenderTargetView(renderTargetView, backgroundColor);
 
     // 그리기
-    vertexShader.Bind(deviceContext);
-    pixelShader.Bind(deviceContext);
+    BasicShader::Bind(deviceContext);
 
     mesh.RenderBuffers(deviceContext);
 
@@ -81,30 +82,17 @@ void Engine::DrawScene()
 
 bool Engine::InitializeScene()
 {
-    vertexShader = VertexShader(L".//shader//BasicVS.hlsl", "main", "vs_5_0");
-    pixelShader = PixelShader(L".//shader//BasicPS.hlsl", "main", "ps_5_0");
-
-    // 컴파일
-    if (vertexShader.Compile(device) == false)
-    {
+    // Compile
+    if (BasicShader::Compile(device) == false) {
         return false;
     }
-    if (pixelShader.Compile(device) == false)
-    {
-        return false;
-    }
-    // 생성
-    if (vertexShader.Create(device) == false)
-    {
-        return false;
-    }
-    if (pixelShader.Create(device) == false)
-    {
+    // Create
+    if (BasicShader::Create(device) == false) {
         return false;
     }
 
     // 메쉬 초기화
-    if (mesh.InitializeBuffers(device, vertexShader.ShaderBuffer()) == false)
+    if (mesh.InitializeBuffers(device, BasicShader::ShaderBuffer()) == false)
     {
         return false;
     }
