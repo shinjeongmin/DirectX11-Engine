@@ -59,7 +59,7 @@ int Engine::Run()
 
 void Engine::Update()
 {
-    //modelUV.UpdateBuffers(deviceContext.Get());
+    modelUV.UpdateBuffers(deviceContext.Get());
 }
 
 void Engine::DrawScene()
@@ -68,17 +68,17 @@ void Engine::DrawScene()
     float backgroundColor[4] = { 0.1f, 0.5f, 0.1f, 1.0f };
     
     // 지우기 (Clear) - 실제로는 덮어씌워서 색칠하기.
-    // Begin Draw(Render) - DX9.
     deviceContext.Get()->ClearRenderTargetView(renderTargetView.Get(), backgroundColor);
 
     // 그리기 준비.
-    //BasicShader::Bind(deviceContext.Get());
-
+    BasicShader::Bind(deviceContext.Get());
+    // 그리기
+    modelUV.RenderBuffers(deviceContext.Get());
 
     // 프레임 바꾸기. FrontBuffer <-> BackBuffer.
     swapChain->Present(1, 0);
 }
-
+    
 bool Engine::InitializeScene()
 {
     if (BasicShader::Compile(device.Get()) == false)
@@ -92,14 +92,14 @@ bool Engine::InitializeScene()
 
     // 메쉬 초기화
 
-    //// shader parameter부분 textureshader 넣지 않고 BasicShader로 대체
-    //if (modelUV.InitializeBuffers(device.Get(), BasicShader::ShaderBuffer(), "sphere.fbx") == false)
-    //{
-    //    return false;
-    //}
-    //modelUV.SetScale(0.002f, 0.002f, 0.002f);
-    ////modelUV.SetScale(0.2f, 0.2f, 0.2f);
-    //modelUV.SetRotation(45.0f, 45.0f, 0.0f);
+    // shader parameter부분 textureshader 넣지 않고 BasicShader로 대체
+    if (modelUV.InitializeBuffers(device.Get(), BasicShader::ShaderBuffer(), "sphere_nonUV.fbx") == false)
+    {
+        return false;
+    }
+    //modelUV.SetPosition(10.0f, 10.0f, 0.0f);
+    modelUV.SetScale(0.2f, 0.2f, 0.2f);
+    modelUV.SetRotation(0.0f, 45.0f, 0.0f);
 
     return true;
 }
