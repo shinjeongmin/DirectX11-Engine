@@ -4,6 +4,7 @@
 #include "Vertex.h"
 
 #include "BasicShader.h"
+#include "TextureMappingShader.h"
 
 Engine::Engine(HINSTANCE hInstance, int width, int height, std::wstring title)
     : D3DApp(hInstance, width, height, title)
@@ -63,6 +64,7 @@ void Engine::Update()
     // 스마트포인터 수정 필요
     quad.UpdateBuffers(deviceContext.Get());
     triangle.UpdateBuffers(deviceContext.Get());
+    quadUV.UpdateBuffers(deviceContext.Get());
 
 }
 
@@ -81,6 +83,11 @@ void Engine::DrawScene()
     quad.RenderBuffers(deviceContext.Get());
     triangle.RenderBuffers(deviceContext.Get());
 
+    // 그리기 준비. (쉐이더 바꾸기.)
+    TextureMappingShader::Bind(deviceContext.Get());
+    // 그리기.
+    quadUV.RenderBuffers(deviceContext.Get());
+
     // 프레임 바꾸기. FrontBuffer <-> BackBuffer.
     swapChain->Present(1, 0);
 }
@@ -93,6 +100,15 @@ bool Engine::InitializeScene()
     }
     // Create
     if (BasicShader::Create(device.Get()) == false) {
+        return false;
+    }
+
+    if (TextureMappingShader::Compile(device.Get(), L"dog.jpg") == false)
+    {
+        return false;
+    }
+    if (TextureMappingShader::Create(device.Get()) == false)
+    {
         return false;
     }
 
@@ -112,6 +128,11 @@ bool Engine::InitializeScene()
     triangle.SetPosition(0.5f, 0.0f, 0.0f);
     triangle.SetScale(0.5f, 0.5f, 0.5f);
 
+    if (quadUV.InitializeBuffers(device.Get(), TextureMappingShader::ShaderBuffer()) == false)
+    {
+        return false;
+    }
+    quadUV.SetScale(0.5f, 0.5f, 0.5f);
 
     return true;
 }
