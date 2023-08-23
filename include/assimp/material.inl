@@ -45,6 +45,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *  @brief Defines the C++ getters for the material system
  */
 
+#ifdef max
+#undef max
+#undef min
+#endif // max
+
 #pragma once
 #ifndef AI_MATERIAL_INL_INC
 #define AI_MATERIAL_INL_INC

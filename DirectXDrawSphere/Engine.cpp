@@ -6,6 +6,8 @@
 #include "BasicShader.h"
 #include "TextureMappingShader.h"
 
+#include "InputProcessor.h"
+
 Engine::Engine(HINSTANCE hInstance, int width, int height, std::wstring title)
     : D3DApp(hInstance, width, height, title)
 {
@@ -50,6 +52,16 @@ int Engine::Run()
         }
         else
         {
+            // ESC 종료.
+            if (InputProcessor::IsKeyDown(Keyboard::Keys::Escape) == true)
+            {
+                if (MessageBox(nullptr, L"종료하시겠습니까?", L"종료", MB_YESNO) == IDYES)
+                {
+                    DestroyWindow(Window::WindowHandle());
+                    return 0;
+                }
+            }
+
             Update();
             DrawScene();
         }
@@ -65,6 +77,7 @@ void Engine::Update()
     quad.UpdateBuffers(deviceContext.Get());
     triangle.UpdateBuffers(deviceContext.Get());
     quadUV.UpdateBuffers(deviceContext.Get());
+    modelUV.UpdateBuffers(deviceContext.Get());
 
 }
 
@@ -84,9 +97,10 @@ void Engine::DrawScene()
     triangle.RenderBuffers(deviceContext.Get());
 
     // 그리기 준비. (쉐이더 바꾸기.)
-    TextureMappingShader::Bind(deviceContext.Get());
+    textureShader.Bind(deviceContext.Get());
     // 그리기.
     quadUV.RenderBuffers(deviceContext.Get());
+    modelUV.RenderBuffers(deviceContext.Get());
 
     // 프레임 바꾸기. FrontBuffer <-> BackBuffer.
     swapChain->Present(1, 0);
@@ -103,11 +117,7 @@ bool Engine::InitializeScene()
         return false;
     }
 
-    if (TextureMappingShader::Compile(device.Get(), L"dog.jpg") == false)
-    {
-        return false;
-    }
-    if (TextureMappingShader::Create(device.Get()) == false)
+    if (textureShader.Initialize(device.Get(), L"dog.jpg") == false)
     {
         return false;
     }
@@ -128,11 +138,19 @@ bool Engine::InitializeScene()
     triangle.SetPosition(0.5f, 0.0f, 0.0f);
     triangle.SetScale(0.5f, 0.5f, 0.5f);
 
-    if (quadUV.InitializeBuffers(device.Get(), TextureMappingShader::ShaderBuffer()) == false)
+    if (quadUV.InitializeBuffers(device.Get(), textureShader.ShaderBuffer()) == false)
     {
         return false;
     }
+    quadUV.SetPosition(0.0f, 0.5f, 0.0f);
     quadUV.SetScale(0.5f, 0.5f, 0.5f);
+
+    if (modelUV.InitializeBuffers(device.Get(), textureShader.ShaderBuffer(), "cube.fbx") == false)
+    {
+        return false;
+    }
+    modelUV.SetScale(0.2f, 0.2f, 0.2f);
+    modelUV.SetRotation(45.0f, 45.0f, 0.0f);
 
     return true;
 }
