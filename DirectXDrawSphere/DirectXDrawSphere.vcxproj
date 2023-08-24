@@ -156,6 +156,8 @@
     <ClCompile Include="BasicShader.cpp" />
     <ClCompile Include="D3DApp.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="IndexBuffer.cpp" />
+    <ClCompile Include="InputLayout.cpp" />
     <ClCompile Include="InputProcessor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtil.cpp" />
@@ -174,6 +176,7 @@
     <ClCompile Include="Vector2f.cpp" />
     <ClCompile Include="Vector3f.cpp" />
     <ClCompile Include="Vertex.cpp" />
+    <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="VertexUV.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -182,6 +185,8 @@
     <ClInclude Include="BasicShader.h" />
     <ClInclude Include="D3DApp.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="InputLayout.h" />
     <ClInclude Include="InputProcessor.h" />
     <ClInclude Include="MathUtil.h" />
     <ClInclude Include="Matrix4f.h" />
@@ -199,6 +204,7 @@
     <ClInclude Include="Vector2f.h" />
     <ClInclude Include="Vector3f.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="VertexUV.h" />
     <ClInclude Include="Window.h" />
