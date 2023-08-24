@@ -27,8 +27,8 @@ public:
 		ID3D11Device* device,
 		std::wstring filename
 	);
-	static void LoadModel(std::string filename, std::vector<Vertex>* vertices);
-	static void LoadModel(std::string filename, std::vector<VertexUV>* vertices);
+	static void LoadModel(std::string filename, std::vector<Vertex>* vertices, std::vector<unsigned int>* indices);
+	static void LoadModel(std::string filename, std::vector<VertexUV>* vertices, std::vector<unsigned int>* indices);
 
 	static std::wstring GetExtension(std::wstring str);
 
