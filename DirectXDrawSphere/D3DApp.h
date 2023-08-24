@@ -28,7 +28,9 @@ protected:
 	ComPtr<ID3D11Device> device;
 	ComPtr<ID3D11DeviceContext> deviceContext;
 	ComPtr<IDXGISwapChain> swapChain;
-	ComPtr<ID3D11RenderTargetView> renderTargetView;	// ·»´õÅ¸°Ù.
+	
+	ComPtr<ID3D11RenderTargetView> renderTargetView;	// ·»´õÅ¸°Ù ºä.
+	ComPtr<ID3D11DepthStencilView> depthStencilView;	// µª½º½ºÅÙ½Ç ºä.
 
 	D3D11_VIEWPORT viewport;					// ºäÆ÷Æ® (È­¸é)
 };
