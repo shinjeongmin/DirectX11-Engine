@@ -14,6 +14,8 @@
 #include "Matrix4f.h"
 #include <wrl.h>
 
+#include "CameraClass.h"
+
 using Microsoft::WRL::ComPtr;
 
 class Engine : public D3DApp
@@ -35,10 +37,8 @@ private:
 
 	TextureMappingShader textureShader;
 
-	Quad quad;
-	Triangle triangle;
-	QuadUV quadUV;
-
 	ModelUV modelUV;
+
+	Camera camera;
 };
 
