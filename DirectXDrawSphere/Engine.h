@@ -4,6 +4,7 @@
 #include "PixelShader.h"
 
 #include "DiffuseShader.h"
+#include "SpecularShader.h"
 
 #include "Mesh.h"
 #include "Triangle.h"
@@ -38,7 +39,9 @@ private:
 	bool InitializeScene();
 
 	DiffuseShader diffuseShader;
+	SpecularShader specularShader;
 	ModelPTN modelPTN;
+	ModelPTN modelPTN2;
 
 	Camera camera;
 

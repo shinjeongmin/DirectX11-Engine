@@ -17,7 +17,7 @@ cbuffer camera : register(b1)
 // 정점 입력.
 struct vs_input
 {
-    float4 position : POSITION;
+    float4 position : POSITION; // 입력 레이아웃 순서랑 같아야 함.
     float2 texCoord : TEXCOORD;
     float3 normal : NORMAL;
 };
@@ -29,6 +29,8 @@ struct vs_output
     float2 texCoord : TEXCOORD;
     float3 normal : NORMAL;
     float3 worldPosition : TEXCOORD1; // 우리의 필요로 변수를 만들었기 때문에, TEXCOORD1 시멘틱을 썼다.
+
+    float3 cameraDirection : TEXCOORD2;
 };
 
 // float4 main(float4 position : POSITION) : SV_POSITION
@@ -37,7 +39,7 @@ vs_output main(vs_input input)
 {
     vs_output output;
     output.position = mul(input.position, world);
-    output.worldPosition = (float3) output.position;
+    output.worldPosition = (float3) output.position; // 조명은 월드 공간에서 연산해야하기 때문에, 따로 백업해 둠.
 
     output.position = mul(output.position, viewProjection);
 
@@ -45,6 +47,8 @@ vs_output main(vs_input input)
 
 	// normal도 월드변환.
     output.normal = mul(input.normal, (float3x3) world);
+
+    output.cameraDirection = normalize(output.worldPosition - cameraPosition);
 
     return output;
 }

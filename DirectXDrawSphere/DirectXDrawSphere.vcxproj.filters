@@ -117,6 +117,12 @@
     <ClCompile Include="VertexPTN.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecularShader.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -215,6 +221,12 @@
     <ClInclude Include="VertexPTN.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecularShader.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="shader\BasicPS.hlsl">
@@ -233,6 +245,18 @@
       <Filter>Shader</Filter>
     </FxCompile>
     <FxCompile Include="shader\DiffuseVS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\RimVS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\RimPS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\SpecularVS.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\SpecularPS.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
   </ItemGroup>
